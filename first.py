@@ -11,7 +11,15 @@ else:
 
 soup = BeautifulSoup(response.text, "html.parser")
 
-first_quote = soup.find("span", class_="text")
+all_quotes = soup.find_all("span", class_="text")
+all_authors = soup.find_all("small", class_="author")
 
-print("\n ----The Data----")
-print(first_quote.text)
+print(f"I found {len(all_quotes)} quotes and it's author on this page:\n")
+
+data = (all_quotes, all_authors)
+
+for i in range(len(all_quotes)):
+    print(all_quotes[i].text)
+    print("-" + all_authors[i].text)
+
+    print("----")
